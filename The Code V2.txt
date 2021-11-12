@@ -1,0 +1,35 @@
+input.onPinPressed(TouchPin.P0, function () {
+    if (game.score() > Upgrade_1_cost) {
+        basic.showLeds(`
+            . . . . .
+            . . . . #
+            . . . # .
+            # . # . .
+            . # . . .
+            `)
+        Points_Per_Click += 1
+        game.addScore(Upgrade_1_Deduction_Price)
+        Upgrade_1_cost = Upgrade_1_cost * 2
+        Upgrade_1_Deduction_Price = Upgrade_1_Deduction_Price * 2
+    } else {
+        basic.showLeds(`
+            # . . . #
+            . # . # .
+            . . # . .
+            . # . # .
+            # . . . #
+            `)
+    }
+})
+input.onButtonPressed(Button.A, function () {
+    game.addScore(Points_Per_Click)
+})
+input.onButtonPressed(Button.B, function () {
+    basic.showNumber(game.score())
+})
+let Upgrade_1_Deduction_Price = 0
+let Points_Per_Click = 0
+let Upgrade_1_cost = 0
+Upgrade_1_cost = 49
+Points_Per_Click = 1
+Upgrade_1_Deduction_Price = -50
